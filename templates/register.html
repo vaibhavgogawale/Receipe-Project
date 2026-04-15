@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+    <div class="container mt-5 card p-3 shadow-lg">
+      <form class="col-6 mx-auto" method="POST" enctype="multipart/form-data">      {% csrf_token %}
+
+        <h2 style="text-align: center;">Register</h2><hr>
+
+<!-- Django Messages -->
+
+        {% if messages %}
+
+            <div class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" class="form-control" id="first_name">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" class="form-control" id="last_name">
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username">
+        </div>
+        
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <p>Already have account <u><a href="/login_page">Login</a></u></p>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block start%}
+
+<div class="mt-5">
+  <div class="mx-auto col 6">
+    <form>
+
+      <div class="mb-3">
+          <label for="search">Search Food:</label>
+          <input type="text" id="search" name="search" placeholder="Search">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Search</button>
+
+    </form>
+  </div>
+</div>
+
+
+  <table class="table mt-5" border="1">
+    <thead>
+      <tr style="text-align: center;">
+        <th scope="col">ID</th>
+        <th scope="col">Receipe Name</th>
+        <th scope="col">Receipe Desc</th>
+        <th scope="col">Receipe Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+          {% for receipe in receipes %}
+
+    <tbody>
+      <tr>
+
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{receipe.receipe_name}}</td>
+        <td>{{receipe.receipe_desc}}</td>
+        <td>
+          {% if receipe.receipe_image %}
+            <img src="{{ receipe.receipe_image.url }}" alt="{{ receipe.receipe_name }}" width="50">
+          {% else %}
+            No image
+          {% endif %}
+      </td>
+          <td>
+            <a href="/view_receipe/update_receipe/{{receipe.id}}/" class="btn btn-success">Update</a>
+            <a href="/view_receipe/delete_receipe/{{receipe.id}}/" class="btn btn-danger m-1">Delete</a> <br> 
+          </td>
+
+      </tr>
+    </tbody>
+
+          {% endfor %}
+
+  </table>
+
+  <div style="text-align: center;">
+    <a href="{% url 'receipeapp:add_receipe' %}" class="btn btn-primary">Add Receipe</a>
+  </div>
+
+
+{% endblock %}
